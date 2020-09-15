@@ -13,8 +13,13 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.create(item_params(:name))
-    redirect_to item_path(item)
+    @item = Item.create(item_params(:name))
+    if @item.save
+      redirect_to item_path(@item)
+    else
+      @errors = @item.errors.full_messages
+      render :new
+    end
   end
 
   def edit
@@ -22,9 +27,13 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find_by(id: params[:id])
-    item.update(item_params(:name))
-    redirect_to item_path(item)
+    @item = Item.find_by(id: params[:id])
+    if @item.update(item_params(:name))
+      redirect_to item_path(@item)
+    else
+      @errors = @item.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy

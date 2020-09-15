@@ -2,15 +2,6 @@
 
 <%=@item.name%>
 
-<p>Using form_for </p>
-<%= form_for @item, method: :delete do |f|%>
-  <%=f.submit "Delete"%>
-<%end%>
-
-<p>Using button_to</p>
+<%=link_to "Edit", edit_item_path(@item)%>
 
 <%=button_to "Delete", @item, method: :delete %>
-
-<p>Using link_to</p>
-
-<%=link_to "Delete", @item, method: :delete %>

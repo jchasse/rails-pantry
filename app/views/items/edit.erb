@@ -1,3 +1,7 @@
+<% @errors && @errors.each do |m|%>
+  <li><%=m%></li>
+<%end%>
+
 <%=form_for @item do |f| %>
   <%= f.label "Name:" %>
   <%= f.text_field :name %>
