@@ -10,10 +10,14 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @item.measurements.build
+    # @item.measurements.build
+    # @item.measurements.build
   end
 
   def create
-    @item = Item.create(item_params(:name))
+    # binding.pry
+    @item = Item.create(item_params)
     if @item.save
       redirect_to item_path(@item)
     else
@@ -28,7 +32,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find_by(id: params[:id])
-    if @item.update(item_params(:name))
+    if @item.update(item_params)
       redirect_to item_path(@item)
     else
       @errors = @item.errors.full_messages
@@ -44,9 +48,20 @@ class ItemsController < ApplicationController
 
   private
 
-  def item_params(*args)
-    params.require(:item).permit(args)
+  # def item_params(*args)
+  #   params.require(:item).permit(args)
+  # end
+
+  def item_params
+    params.require(:item).permit(:name, measurements_attributes: [:unit, :quantity, :id])
   end
 
-
 end
+
+# {"name"=>"Brown Sugar", "measurements_attributes"=>{"0"=>{"quantity"=>"2", "unit"=>"Boxes"}}}
+#
+# def initialize(hash)
+#   hash.each do |k, v|
+#       self.send("#{k}=", v)
+#   end
+# end

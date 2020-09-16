@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :measurements
   # binding.pry
 
   # get '/', to: "items#about"

@@ -1,7 +1,13 @@
 <h1>Item</h1>
 
-<%=@item.name%>
+<%=@item.name%><br><br>
 
-<%=link_to "Edit", edit_item_path(@item)%>
+<%@item.measurements.each do |m|%>
+  <li><%=m.quantity%> <%=m.unit%></li>
+<%end%>
+
+<br><br>
+
+<%=link_to "Edit", edit_item_path(@item)%><br><br>
 
 <%=button_to "Delete", @item, method: :delete %>
