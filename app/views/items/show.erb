@@ -2,10 +2,7 @@
 
 <%=@item.name%><br><br>
 
-<%@item.measurements.each do |m|%>
-  <li><%=m.quantity%> <%=m.unit%></li>
-<%end%>
-
+<%= render partial: "measurements/measurements", locals: {measurements: @item.measurements, index: false} %>
 <br><br>
 
 <%=link_to "Edit", edit_item_path(@item)%><br><br>

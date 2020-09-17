@@ -1,5 +1,13 @@
 class MeasurementsController < ApplicationController
 
+  def index
+    if params[:search]
+      @measurements = Measurement.quantity_search(params[:search])
+    else
+      @measurements = Measurement.all
+    end
+  end
+
   def new
     @measurement = Measurement.new
     # @items = Item.all

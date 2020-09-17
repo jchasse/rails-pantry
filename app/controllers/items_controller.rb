@@ -1,22 +1,20 @@
 class ItemsController < ApplicationController
 
+  before_action :set_item, except: [:new, :create, :index]
+
   def index
     @items = Item.all
   end
 
   def show
-    @item = Item.find_by(id: params[:id])
   end
 
   def new
     @item = Item.new
     @item.measurements.build
-    # @item.measurements.build
-    # @item.measurements.build
   end
 
   def create
-    # binding.pry
     @item = Item.create(item_params)
     if @item.save
       redirect_to item_path(@item)
@@ -27,11 +25,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find_by(id: params[:id])
+
   end
 
   def update
-    @item = Item.find_by(id: params[:id])
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
@@ -41,12 +38,15 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find_by(id: params[:id])
-    item.destroy
+    @item.destroy
     redirect_to items_path
   end
 
   private
+
+  def set_item
+    @item = Item.find_by(id: params[:id])
+  end
 
   # def item_params(*args)
   #   params.require(:item).permit(args)

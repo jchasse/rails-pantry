@@ -9,6 +9,10 @@ class Measurement < ApplicationRecord
   #
   # end
 
+  def self.quantity_search(search)
+    self.where("quantity >= ?", search)
+  end
+
   def item_name=(name)
     self.item = Item.find_or_create_by(name: name)
   end

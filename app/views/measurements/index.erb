@@ -1,0 +1,7 @@
+<%=form_tag measurements_path, method: :get do %>
+  <%=label_tag "Search by quantity"%>
+  <%=text_field_tag :search%>
+  <%=submit_tag :search%>
+<%end%>
+
+<%=render partial: "measurements", locals: {measurements: @measurements, index: true}%>
