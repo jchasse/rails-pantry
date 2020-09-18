@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+
     @item = Item.create(item_params)
     if @item.save
       redirect_to item_path(@item)
@@ -29,6 +30,7 @@ class ItemsController < ApplicationController
   end
 
   def update
+      binding.pry
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
