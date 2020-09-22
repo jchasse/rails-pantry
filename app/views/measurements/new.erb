@@ -1,13 +1,6 @@
-<%=form_for @measurement do |f|%>
-  <%=f.label :quantity%>
-  <%=f.number_field :quantity %>
-  <%=f.label :unit%>
-  <%=f.text_field :unit%>
-  <%=f.label :item %><br>
-  <%=f.fields_for :item do |i|%>
-    <%=i.label :name %>
-    <%=i.text_field :name %>
-  <%end%>
-  <%=f.submit "Create Measurement"%>
 
+<% if @item %>
+  <h4>Add <%=@item.name%> to your Pantry</h4>
 <%end%>
+
+<%=render 'form'%>

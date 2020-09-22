@@ -3,7 +3,11 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:new, :create, :index]
 
   def index
-    @items = Item.all
+    if params[:user_id]
+      @items = User.find_by(id: params[:user_id]).items
+    else
+      @items = Item.all
+    end
   end
 
   def show

@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
 
   has_many :measurements
+  has_many :users, through: :measurements
   # validates :name, {presence: {message: "!!!!!!!!!!not blank!!!!!!"}, uniqueness: {message: "must be unique!!!!!"}}
   validates_presence_of :name
   validates_uniqueness_of :name

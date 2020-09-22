@@ -4,7 +4,7 @@ class CreateMeasurements < ActiveRecord::Migration[6.0]
       t.string :unit
       t.integer :quantity
       t.integer :item_id
-
+      t.integer :user_id
       t.timestamps
     end
   end
