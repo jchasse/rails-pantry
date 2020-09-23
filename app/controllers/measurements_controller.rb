@@ -1,6 +1,6 @@
 class MeasurementsController < ApplicationController
 
-  layout "items"
+layout 'application'
 
   def index
     if params[:search]

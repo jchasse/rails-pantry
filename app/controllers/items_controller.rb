@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  layout 'application'
 
   before_action :set_item, except: [:new, :create, :index]
 
