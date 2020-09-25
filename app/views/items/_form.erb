@@ -4,6 +4,7 @@
 
   <%=f.label "Measurements" %><br>
   <%=f.fields_for :measurements do |m|%>
+    <%= m.hidden_field :user_id%>
     <%=m.label :quantity%>
     <%=m.number_field :quantity %><br>
     <%=m.label :unit%>

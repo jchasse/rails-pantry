@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :redirect_if_logged_in
+
   layout 'application'
 
   def new
@@ -12,7 +15,7 @@ class UsersController < ApplicationController
       redirect_to items_path
       # redirect_to user_path(@user)
     else
-      @errors = @user.errors.full_messages
+      # @errors = @user.errors.full_messages
       render :new
     end
   end

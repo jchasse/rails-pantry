@@ -1,6 +1,7 @@
 class MeasurementsController < ApplicationController
+  before_action :require_login
 
-layout 'application'
+  layout 'application'
 
   def index
     if params[:search]

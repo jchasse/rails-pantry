@@ -14,14 +14,18 @@ class Item < ApplicationRecord
   #
   # def measurements_attributes=(attr)
   #   attr.values.each do |m|
-  #     if m[:id] == nil
-  #       new_m = Measurement.new(m)
+  #     new_m = Measurement.new(m)
   #       new_m.item = self
+  #       # new_m.user = current_user
   #       new_m.save
-  #     else
-  #       new_m = Measurement.find_by(id: m[])
-  #       new_m.update(m)
-  #     end
+  #     # if m[:id] == nil
+  #     #   new_m = Measurement.new(m)
+  #     #   new_m.item = self
+  #     #   new_m.save
+  #     # else
+  #     #   new_m = Measurement.find_by(id: m[])
+  #     #   new_m.update(m)
+  #     # end
   #   end
   # end
 

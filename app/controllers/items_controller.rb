@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   layout 'application'
 
   before_action :set_item, except: [:new, :create, :index]
+  before_action :require_login
 
   def index
     if params[:user_id]
@@ -16,7 +17,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @item.measurements.build
+    @item.measurements.build(user: current_user)
   end
 
   def create
@@ -24,7 +25,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item)
     else
-      @errors = @item.errors.full_messages
+      # @errors = @item.errors.full_messages
       render :new
     end
   end
@@ -37,7 +38,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      @errors = @item.errors.full_messages
+      # @errors = @item.errors.full_messages
       render :edit
     end
   end
@@ -58,7 +59,7 @@ class ItemsController < ApplicationController
   # end
 
   def item_params
-    params.require(:item).permit(:name, measurements_attributes: [:unit, :quantity, :id])
+    params.require(:item).permit(:name, measurements_attributes: [:unit, :quantity, :id, :user_id])
   end
 
 end

@@ -6,13 +6,15 @@ class Measurement < ApplicationRecord
 
   validates_presence_of :quantity
 
+   scope :quantity_search, -> (search) { where("quantity >= ?", search) }
+
   # def item_attributes=(att)
   #
   # end
 
-  def self.quantity_search(search)
-    self.where("quantity >= ?", search)
-  end
+  # def self.quantity_search(search)
+  #   self.where("quantity >= ?", search)
+  # end
 
   def item_name=(name)
     self.item = Item.find_or_create_by(name: name)

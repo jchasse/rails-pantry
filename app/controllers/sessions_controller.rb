@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
+  before_action :redirect_if_logged_in, except: [:destroy]
+
   def new
+    # @errors = []
     # @user = User.new
   end
 
@@ -10,6 +13,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to items_path
     else
+      @errors = ["Username or password incorrect"]
       render :new
     end
   end
